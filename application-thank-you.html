@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Submitted - AVSAR Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fc; }
+        .tricolor-bar { height: 5px; width: 100%; background: linear-gradient(to right, #FF9933 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #138808 66.6%); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <div class="tricolor-bar"></div>
+
+    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="National Emblem of India" class="h-12">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">AVSAR</h1>
+                    <p class="text-sm text-gray-500">National Internship Portal</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center">
+        <div class="max-w-2xl mx-auto px-4 text-center">
+            <div class="bg-white rounded-lg shadow-lg border p-10">
+                <div class="text-6xl text-green-500 mb-4">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-800">Thank You!</h1>
+                <p class="text-gray-600 mt-2">Your application has been successfully submitted.</p>
+                <p class="text-sm text-gray-500 mt-4">You can track the status of this and all your other applications on the "My Applications" page. You will be notified via email if you are shortlisted.</p>
+                <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="/my-applications" class="bg-blue-600 text-white font-semibold rounded-md px-6 py-3 hover:bg-blue-700 transition">
+                        View My Applications
+                    </a>
+                    <a href="/recommendations" class="bg-gray-200 text-gray-800 font-semibold rounded-md px-6 py-3 hover:bg-gray-300 transition">
+                        Back to Recommendations
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="text-center p-6 text-sm text-gray-600 bg-white border-t">
+        <p>&copy; 2024 Portal is Designed, Developed and Hosted by National Informatics Centre (NIC), Ministry of Electronics and Information Technology, Government of India.</p>
+    </footer>
+
+</body>
+</html>
+

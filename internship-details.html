@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Details - AVSAR Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fc; }
+        .tricolor-bar { height: 5px; width: 100%; background: linear-gradient(to right, #FF9933 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #138808 66.6%); }
+        .section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #dbeafe; padding-bottom: 0.5rem; margin-bottom: 1rem; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <div class="tricolor-bar"></div>
+
+    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="National Emblem of India" class="h-12">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">AVSAR</h1>
+                    <p class="text-sm text-gray-500">National Internship Portal</p>
+                </div>
+            </div>
+            <a href="/recommendations" class="text-sm font-semibold text-gray-600 hover:text-blue-600 transition flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> <span>Back to Recommendations</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow py-12">
+        <div id="details-container" class="max-w-4xl mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-md p-8 text-center text-gray-600">Loading internship details...</div>
+        </div>
+    </main>
+    
+    <footer class="text-center p-6 text-sm text-gray-600 bg-white border-t mt-auto">
+        <p>&copy; 2024 Portal is Designed, Developed and Hosted by National Informatics Centre (NIC), Ministry of Electronics and Information Technology, Government of India.</p>
+    </footer>
+
+    <script>
+        const ALL_INTERNSHIPS = [
+            { id: 1, title: 'Web Development Intern', org: 'National Informatics Centre (NIC)', stipend: '₹10,000/month', duration: '3 Months', skills: ['HTML', 'CSS', 'JavaScript', 'React'], category: 'Technology', about: 'Join a dynamic team at the forefront of India\'s digital transformation. As a Web Development Intern at NIC, you will contribute to building and maintaining high-impact government websites and applications that serve millions of citizens.' }, { id: 2, title: 'Cyber Security Analyst', org: 'CERT-In', stipend: '₹15,000/month', duration: '6 Months', skills: ['Networking', 'Python', 'Cybersecurity'], category: 'Technology', about: 'Work with the Indian Computer Emergency Response Team (CERT-In) to protect national cyberspace. This internship offers hands-on experience in threat analysis, incident response, and cybersecurity best practices.' }, { id: 3, title: 'Data Science Intern', org: 'NITI Aayog', stipend: '₹12,000/month', duration: '4 Months', skills: ['Python', 'R', 'Machine Learning', 'Data Analysis'], category: 'Technology', about: 'Leverage data to drive policy-making at the premier policy think tank of the Government of India. You will work with large datasets, build predictive models, and create insightful visualizations to support national development goals.' }, { id: 4, title: 'Software Engineering Intern', org: 'C-DAC', stipend: '₹18,000/month', duration: '6 Months', skills: ['Java', 'C++', 'Data Structures'], category: 'Technology', about: 'Contribute to cutting-edge research and development in advanced computing. This role at C-DAC involves designing, developing, and testing software for high-performance computing, AI, and other emerging technologies.' }, { id: 5, title: 'UI/UX Design Intern', org: 'MyGov.in', stipend: '₹10,000/month', duration: '3 Months', skills: ['Figma', 'UI/UX', 'Prototyping'], category: 'Technology', about: 'Design user-centric and accessible interfaces for MyGov, the world\'s largest citizen engagement platform. You will collaborate with developers and policymakers to create intuitive digital experiences.' },
+            { id: 6, title: 'Public Policy Research', org: 'PRS Legislative Research', stipend: '₹8,000/month', duration: '2 Months', skills: ['Research', 'Writing', 'Public Policy'], category: 'Research', about: 'Gain first-hand experience in legislative and policy research. Interns will assist research analysts in preparing background notes on various legislative and policy issues.' },
+            { id: 7, title: 'Economic Research Assistant', org: 'Ministry of Finance', stipend: '₹10,000/month', duration: '3 Months', skills: ['Economics', 'Data Analysis', 'Statistics'], category: 'Research', about: 'Assist in the analysis of economic data, preparation of reports on macroeconomic trends, and contribute to the formulation of economic policies.' },
+            { id: 8, title: 'Legal Research Intern', org: 'Law Commission of India', stipend: '₹5,000/month', duration: '2 Months', skills: ['Legal Research', 'Writing'], category: 'Research', about: 'Work on legal research projects for the Law Commission, which advises the government on legal reform.' },
+            { id: 9, title: 'Social Sector Research', org: 'Ministry of Social Justice', stipend: '₹7,500/month', duration: '3 Months', skills: ['Social Work', 'Research', 'MS Office'], category: 'Research', about: 'Contribute to research and analysis of schemes related to social welfare and empowerment of disadvantaged and marginalized sections of society.' },
+            { id: 10, title: 'Social Media Management', org: 'Prasar Bharati', stipend: '₹11,000/month', duration: '4 Months', skills: ['Social Media', 'Content Creation', 'Marketing'], category: 'Media', about: 'Manage the social media handles of India\'s public service broadcaster. Create engaging content, analyze audience metrics, and develop strategies to increase reach.' },
+            { id: 11, title: 'Content Writer (Hindi)', org: 'Ministry of Home Affairs', stipend: '₹9,000/month', duration: '3 Months', skills: ['Hindi Writing', 'Content Creation'], category: 'Media', about: 'Create and translate content in Hindi for various government portals and official communications.' },
+            { id: 12, title: 'Graphic Design Intern', org: 'Digital India Corporation', stipend: '₹10,000/month', duration: '3 Months', skills: ['Adobe Photoshop', 'Illustrator', 'Graphic Design'], category: 'Media', about: 'Design creatives for various Digital India initiatives, including social media campaigns, websites, and print materials.' },
+            { id: 13, title: 'Video Production Assistant', org: 'Doordarshan', stipend: '₹12,000/month', duration: '6 Months', skills: ['Video Editing', 'Premiere Pro'], category: 'Media', about: 'Assist in the production of television programs, from pre-production to post-production, including video editing and content creation.' },
+            { id: 14, title: 'Civil Engineering Intern', org: 'National Highways Authority of India (NHAI)', stipend: '₹15,000/month', duration: '6 Months', skills: ['AutoCAD', 'Civil Engineering'], category: 'Engineering', about: 'Get hands-on experience in highway construction projects, including surveying, design, and project management under the guidance of experienced engineers.' },
+            { id: 15, title: 'Electrical Engineering Intern', org: 'Indian Railways', stipend: '₹14,000/month', duration: '6 Months', skills: ['Electrical Engineering', 'Circuit Design'], category: 'Engineering', about: 'Work on projects related to the vast electrical infrastructure of the Indian Railways, including traction, signaling, and power distribution.' },
+            { id: 16, title: 'Urban Planning Intern', org: 'Ministry of Housing and Urban Affairs', stipend: '₹10,000/month', duration: '4 Months', skills: ['Urban Planning', 'GIS'], category: 'Engineering', about: 'Contribute to the planning and development of smart cities and urban infrastructure projects. Work with GIS data and assist in creating urban development plans.' }
+        ];
+
+        function renderInternshipDetails(internship) {
+            const container = document.getElementById('details-container');
+            container.innerHTML = `
+                <div class="bg-white rounded-lg shadow-md border overflow-hidden">
+                    <div class="p-8"><div class="flex flex-col md:flex-row justify-between items-start gap-4"><div><h1 class="text-3xl font-bold text-gray-900">${internship.title}</h1><p class="text-lg text-gray-600">${internship.org}</p></div></div><div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center border-t border-b py-4"><div><p class="text-sm text-gray-500">Stipend</p><p class="font-semibold">${internship.stipend}</p></div><div><p class="text-sm text-gray-500">Duration</p><p class="font-semibold">${internship.duration}</p></div><div><p class="text-sm text-gray-500">Skills Required</p><p class="font-semibold">${internship.skills.join(', ')}</p></div><div><p class="text-sm text-gray-500">Category</p><p class="font-semibold">${internship.category}</p></div></div></div>
+                    <div class="p-8 bg-gray-50/70"><h2 class="section-title">About the Internship</h2><p class="text-gray-700">${internship.about || 'Detailed description not available.'}</p></div>
+                    <div class="p-8"><h2 class="section-title text-center">Apply Now</h2><form id="apply-form" class="space-y-6 max-w-2xl mx-auto"><div><label for="why-hire" class="block text-sm font-medium text-gray-700 mb-1">Why should we hire you for this role? *</label><textarea id="why-hire" name="why_hire" rows="5" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" required placeholder="Explain your suitability, highlighting your skills and motivation..."></textarea></div><div><label for="work-sample" class="block text-sm font-medium text-gray-700 mb-1">Work Sample (Optional)</label><p class="text-xs text-gray-500 mb-2">Please provide a link to your portfolio, GitHub repository, or a specific project (e.g., Google Drive, Behance).</p><input type="url" id="work-sample" name="work_sample" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" placeholder="https://example.com/your-work"></div><button type="submit" class="w-full bg-green-600 text-white font-bold rounded-lg py-3 hover:bg-green-700 transition">Submit Application</button></form></div>
+                </div>
+            `;
+            
+            document.getElementById('apply-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const applyData = {
+                    internship_id: internship.id,
+                    internship_title: internship.title,
+                    internship_org: internship.org,
+                    why_hire: document.getElementById('why-hire').value,
+                    work_sample: document.getElementById('work-sample').value
+                };
+
+                fetch('/apply', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(applyData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect) {
+                        // This is the fix: redirect immediately without an alert.
+                        window.location.href = data.redirect;
+                    } else {
+                        // This will show an alert only if there's an error from the server.
+                        alert(`Error: ${data.error || 'An unknown error occurred.'}`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Application submission error:', error);
+                    alert('A network error occurred. Please try again.');
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const internshipId = parseInt(urlParams.get('id'));
+            const internship = ALL_INTERNSHIPS.find(i => i.id === internshipId);
+            if (internship) {
+                renderInternshipDetails(internship);
+            } else {
+                document.getElementById('details-container').innerHTML = '<div class="bg-white p-8 rounded-lg shadow-md border text-center text-red-600">Could not find internship details.</div>';
+            }
+        });
+    </script>
+</body>
+</html>
+
