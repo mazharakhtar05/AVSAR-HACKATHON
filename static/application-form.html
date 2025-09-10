@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form - AVSAR Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f7f9fc;
+        }
+        .tricolor-bar { 
+            height: 5px; 
+            width: 100%; 
+            background: linear-gradient(to right, #FF9933 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #138808 66.6%); 
+        }
+        .step { display: none; }
+        .step.active { animation: fadeIn 0.5s ease-in-out; display: block; }
+        @keyframes fadeIn {from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); }}
+        input:focus, select:focus, textarea:focus {
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); 
+            border-color: #2563eb;
+        }
+        .skill-tag, .interest-tag {
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border-width: 1.5px;
+        }
+        .skill-tag.selected, .interest-tag.selected {
+            background-color: #1d4ed8;
+            color: white;
+            border-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .tooltip-container { position: relative; display: inline-block; cursor: pointer; }
+        .tooltip-text { visibility: hidden; width: 220px; background-color: #555; color: #fff; text-align: center; border-radius: 6px; padding: 5px 10px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -110px; opacity: 0; transition: opacity 0.3s; font-size: 12px; font-weight: 500; }
+        .tooltip-container:hover .tooltip-text { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <div class="tricolor-bar"></div>
+
+    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="National Emblem of India" class="h-12">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">AVSAR</h1>
+                    <p class="text-sm text-gray-500">National Internship Portal</p>
+                </div>
+            </div>
+             <div class="flex items-center gap-4">
+                <a href="/recommendations" class="text-sm font-semibold text-gray-600 hover:text-blue-600 transition flex items-center gap-2">
+                    <i class="fas fa-arrow-left"></i> <span>Back to Recommendations</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow py-12">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-10 border border-gray-200/80">
+                <div class="mb-10"><div class="flex items-center"><div id="progress-step-1" class="flex items-center text-blue-700 relative"><div class="rounded-full h-10 w-10 flex items-center justify-center border-2 border-blue-700 bg-blue-700 text-white font-bold">1</div><div class="absolute top-0 -ml-10 text-center mt-12 w-32 text-xs font-medium uppercase text-blue-700">Personal</div></div><div class="flex-auto border-t-2 transition duration-500 ease-in-out border-gray-300" id="progress-line-1"></div><div id="progress-step-2" class="flex items-center text-gray-500 relative"><div class="rounded-full h-10 w-10 flex items-center justify-center border-2 border-gray-300">2</div><div class="absolute top-0 -ml-10 text-center mt-12 w-32 text-xs font-medium uppercase text-gray-500">Education</div></div><div class="flex-auto border-t-2 transition duration-500 ease-in-out border-gray-300" id="progress-line-2"></div><div id="progress-step-3" class="flex items-center text-gray-500 relative"><div class="rounded-full h-10 w-10 flex items-center justify-center border-2 border-gray-300">3</div><div class="absolute top-0 -ml-10 text-center mt-12 w-32 text-xs font-medium uppercase text-gray-500">Skills</div></div><div class="flex-auto border-t-2 transition duration-500 ease-in-out border-gray-300" id="progress-line-3"></div><div id="progress-step-4" class="flex items-center text-gray-500 relative"><div class="rounded-full h-10 w-10 flex items-center justify-center border-2 border-gray-300">4</div><div class="absolute top-0 -ml-10 text-center mt-12 w-32 text-xs font-medium uppercase text-gray-500">Review</div></div></div></div>
+                <form id="application-form">
+                    <div id="step-1" class="step active"><h2 class="text-2xl font-bold text-gray-800">Personal Details</h2><p class="text-gray-600 mt-1">Fields marked with * are required.</p><div class="mt-8 space-y-6"><div class="flex items-center space-x-6"><div class="shrink-0"><img id='preview_img' class="h-24 w-24 object-cover rounded-full shadow-md border-4 border-white" src="https://placehold.co/96x96/e2e8f0/718096?text=Photo" alt="Current profile photo" /></div><div class="space-y-2"><label class="block"><span class="sr-only">Choose profile photo</span><input type="file" id="photo-upload" name="photo_file" accept="image/png, image/jpeg" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 transition"/></label><button type="button" id="remove-photo-btn" class="text-xs text-red-600 hover:underline">Remove photo</button></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="fullName" class="block text-sm font-medium text-gray-700">Full Name *</label><input type="text" id="fullName" name="fullName" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" required></div><div><label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth *</label><input type="date" id="dob" name="dob" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" required></div><div><label for="email" class="block text-sm font-medium text-gray-700">Email Address *</label><input type="email" id="email" name="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm bg-gray-100" required readonly></div><div><label for="phone" class="block text-sm font-medium text-gray-700">Phone Number *</label><input type="tel" id="phone" name="phone" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" required></div><div><label for="state" class="block text-sm font-medium text-gray-700">State *</label><select id="state" name="state" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" required></select></div><div><label for="city" class="block text-sm font-medium text-gray-700">City *</label><select id="city" name="city" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" required></select></div><div><label for="linkedin" class="block text-sm font-medium text-gray-700">LinkedIn Profile URL <span class="tooltip-container"><i class="fas fa-info-circle text-gray-400 ml-1"></i><span class="tooltip-text">A link to your profile on LinkedIn, a professional networking site. Optional, leave blank if you don't have one.</span></span></label><input type="url" id="linkedin" name="linkedin" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" placeholder="https://www.linkedin.com/in/yourname"></div><div><label for="github" class="block text-sm font-medium text-gray-700">GitHub Profile URL <span class="tooltip-container"><i class="fas fa-info-circle text-gray-400 ml-1"></i><span class="tooltip-text">A link to your profile on GitHub, a site for code projects. Optional, mainly for technical roles.</span></span></label><input type="url" id="github" name="github" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" placeholder="https://github.com/yourusername"></div></div><div><label for="about" class="block text-sm font-medium text-gray-700">About Me / Career Objective</label><textarea id="about" name="about" rows="3" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" placeholder="Briefly describe yourself and your career goals..."></textarea></div></div></div>
+                    <div id="step-2" class="step"><h2 class="text-2xl font-bold text-gray-800">Educational Background</h2><p class="text-gray-600 mt-1">Tell us about your academic journey.</p><div class="mt-8 space-y-6"><div><label for="college" class="block text-sm font-medium text-gray-700">College/University Name *</label><input list="college-list" type="text" id="college" name="college" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" required><datalist id="college-list"></datalist></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="qualification" class="block text-sm font-medium text-gray-700">Highest Qualification *</label><select id="qualification" name="qualification" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm"><option>12th Pass / Higher Secondary</option><option>Diploma</option><option selected>Graduate</option><option>Post Graduate</option><option>PhD</option></select></div><div><label for="stream" class="block text-sm font-medium text-gray-700">Field of Study / Stream *</label><select id="stream" name="stream" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm"><option>Engineering (All Branches)</option><option>Arts & Humanities</option><option>Commerce & Finance</option><option>Science (Pure & Applied)</option><option>Management</option><option>Law</option><option>Medicine</option></select></div><div><label for="year" class="block text-sm font-medium text-gray-700">Year of Completion *</label><input type="number" id="year" name="year" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" min="2015" max="2028" placeholder="e.g., 2024" required></div></div></div></div>
+                    <div id="step-3" class="step"><h2 class="text-2xl font-bold text-gray-800">Skills & Preferences</h2><p class="text-gray-600 mt-1">Showcase your strengths to help us find the best match.</p><div class="mt-8 space-y-8"><div><label class="block text-lg font-semibold text-gray-700 mb-2">Interested Sectors *</label><p class="text-xs text-gray-500 mb-3">What kind of work excites you? Select a few sectors you're interested in.</p><div id="interests-container" class="flex flex-wrap gap-3"></div></div><div><label class="block text-lg font-semibold text-gray-700 mb-2">Technical & Soft Skills *</label><p class="text-xs text-gray-500 mb-3">Select all skills that apply to you. This is crucial for matching.</p><div id="skills-container" class="flex flex-wrap gap-3"></div></div><div><label for="location" class="block text-sm font-medium text-gray-700">Preferred Internship Location *</label><select id="location" name="location" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm" required><option>Anywhere in India</option><option>Work from Home</option><option>New Delhi</option><option>Mumbai</option><option>Bengaluru</option><option>Hyderabad</option><option>Chennai</option><option>Pune</option><option>Kolkata</option></select></div></div></div>
+                    <div id="step-4" class="step"><h2 class="text-2xl font-bold text-gray-800 text-center">Review Your Application</h2><p class="text-gray-600 mt-1 text-center">Please confirm your details before submission.</p><div class="mt-8 border bg-gray-50/50 rounded-lg p-6 space-y-6"><div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 pb-6 border-b"><img id="review-photo" class="h-28 w-28 object-cover rounded-full border-4 border-white shadow-md" src="https://placehold.co/112x112/e2e8f0/718096?text=Photo" alt="Profile photo" /><div class="text-center sm:text-left"><h3 id="review-name" class="text-3xl font-bold text-gray-900">Applicant Name</h3><p id="review-email" class="text-gray-600">email@example.com</p><p id="review-phone" class="text-gray-600">+91-9876543210</p></div></div><div id="review-about-section" class="pt-4" style="display: none;"><h4 class="font-semibold text-lg text-gray-800 border-b pb-2 mb-2">About Me</h4><p id="review-about" class="text-gray-600 text-sm whitespace-pre-line"></p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 pt-4"><div><strong class="font-semibold text-gray-600">State:</strong> <span id="review-state" class="text-gray-800"></span></div><div><strong class="font-semibold text-gray-600">City:</strong> <span id="review-city" class="text-gray-800"></span></div><div><strong class="font-semibold text-gray-600">College:</strong> <span id="review-college" class="text-gray-800"></span></div><div><strong class="font-semibold text-gray-600">Qualification:</strong> <span id="review-qualification" class="text-gray-800"></span></div><div><strong class="font-semibold text-gray-600">Field of Study:</strong> <span id="review-stream" class="text-gray-800"></span></div><div><strong class="font-semibold text-gray-600">Preferred Location:</strong> <span id="review-location" class="text-gray-800"></span></div></div><div class="pt-4"><h4 class="font-semibold text-lg text-gray-800 border-b pb-2 mb-2">Interested Sectors</h4><div id="review-interests" class="flex flex-wrap gap-2 mt-2"></div></div><div class="pt-4"><h4 class="font-semibold text-lg text-gray-800 border-b pb-2 mb-2">Skills</h4><div id="review-skills" class="flex flex-wrap gap-2 mt-2"></div></div></div></div>
+                    <div class="mt-12 flex justify-between">
+                        <button type="button" id="prev-btn" class="bg-gray-200 text-gray-800 font-bold rounded-md px-6 py-3 hover:bg-gray-300 transition" style="display: none;">Previous</button>
+                        <button type="button" id="next-btn" class="bg-blue-600 text-white font-bold rounded-md px-6 py-3 hover:bg-blue-700 transition ml-auto">Next</button>
+                        <button type="submit" id="submit-btn" class="bg-green-600 text-white font-bold rounded-md px-6 py-3 hover:bg-green-700 transition ml-auto" style="display: none;">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="text-center p-6 text-sm text-gray-600 bg-white border-t mt-auto">
+        <p>&copy; 2024 Portal is Designed, Developed and Hosted by National Informatics Centre (NIC), Ministry of Electronics and Information Technology, Government of India.</p>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+        let userPhotoBase64 = null;
+        const form = document.getElementById('application-form');
+        const locationData = { "Andhra Pradesh": ["Visakhapatnam", "Vijayawada"], "Arunachal Pradesh": ["Itanagar"], "Assam": ["Guwahati", "Dibrugarh"], "Bihar": ["Patna", "Gaya"], "Chhattisgarh": ["Raipur", "Bhilai"], "Goa": ["Panaji"], "Gujarat": ["Ahmedabad", "Surat", "Vadodara"], "Haryana": ["Faridabad", "Gurugram"], "Himachal Pradesh": ["Shimla"], "Jharkhand": ["Ranchi", "Jamshedpur"], "Karnataka": ["Bengaluru", "Mysuru"], "Kerala": ["Thiruvananthapuram", "Kochi"], "Madhya Pradesh": ["Bhopal", "Indore"], "Maharashtra": ["Mumbai", "Pune", "Nagpur"], "Manipur": ["Imphal"], "Meghalaya": ["Shillong"], "Mizoram": ["Aizawl"], "Nagaland": ["Kohima"], "Odisha": ["Bhubaneswar", "Cuttack"], "Punjab": ["Ludhiana", "Amritsar"], "Rajasthan": ["Jaipur", "Jodhpur"], "Sikkim": ["Gangtok"], "Tamil Nadu": ["Chennai", "Coimbatore"], "Telangana": ["Hyderabad", "Warangal"], "Tripura": ["Agartala"], "Uttar Pradesh": ["Lucknow", "Kanpur", "Ghaziabad", "Noida"], "Uttarakhand": ["Dehradun"], "West Bengal": ["Kolkata", "Asansol"], "Delhi": ["New Delhi"], "Jammu and Kashmir": ["Srinagar", "Jammu"], "Ladakh": ["Leh"], "Puducherry": ["Puducherry"] };
+        const colleges = ["Indian Institute of Technology, Bombay", "Indian Institute of Technology, Delhi", "Indian Institute of Technology, Madras", "Indian Institute of Technology, Kanpur", "Indian Institute of Technology, Kharagpur", "Indian Institute of Science, Bangalore", "Jawaharlal Nehru University, New Delhi", "Banaras Hindu University, Varanasi", "University of Delhi, Delhi", "Anna University, Chennai", "Vellore Institute of Technology, Vellore", "National Institute of Technology, Tiruchirappalli"];
+        const skillsList = ['HTML', 'CSS', 'JavaScript', 'React', 'Python', 'Java', 'C++', 'Data Structures', 'Cybersecurity', 'Machine Learning', 'Data Analysis', 'UI/UX', 'Figma', 'Research', 'Writing', 'Public Policy', 'Economics', 'Statistics', 'Legal Research', 'Social Work', 'MS Office', 'Social Media', 'Content Creation', 'Marketing', 'Graphic Design', 'Adobe Photoshop', 'Video Editing', 'AutoCAD', 'Civil Engineering', 'Electrical Engineering', 'GIS', 'Supply Chain', 'Logistics', 'Human Resources', 'Project Management', 'Communication', 'Teamwork'];
+        const interestsList = ['Technology', 'Research', 'Media', 'Engineering', 'Management', 'Other'];
+
+        function populateDropdown(selectElement, items) { items.forEach(item => { const option = document.createElement('option'); option.value = item; option.textContent = item; selectElement.appendChild(option); }); }
+        
+        function populateSelectableTags(containerId, list, tagClass) {
+            const container = document.getElementById(containerId);
+            list.forEach(item => {
+                const tag = document.createElement('span');
+                tag.className = `${tagClass} bg-white text-gray-700 border-gray-300 rounded-md px-4 py-2 text-sm`;
+                tag.textContent = item;
+                tag.dataset.value = item;
+                container.appendChild(tag);
+            });
+        }
+
+        function loadUserData() {
+            fetch("/get_application_data")
+                .then(response => response.json())
+                .then(data => {
+                    if (data && !data.error) {
+                        document.getElementById('fullName').value = data.fullName || '';
+                        document.getElementById('dob').value = data.dob || '';
+                        document.getElementById('email').value = data.email || '';
+                        document.getElementById('phone').value = data.phone || '';
+                        document.getElementById('state').value = data.state || '';
+                        const citySelect = document.getElementById('city');
+                        citySelect.innerHTML = '<option value="">Select City</option>';
+                        if (data.state && locationData[data.state]) {
+                            populateDropdown(citySelect, locationData[data.state]);
+                            document.getElementById('city').value = data.city || '';
+                        }
+                        document.getElementById('linkedin').value = data.linkedin || '';
+                        document.getElementById('github').value = data.github || '';
+                        document.getElementById('about').value = data.about || '';
+                        document.getElementById('college').value = data.college || '';
+                        document.getElementById('qualification').value = data.qualification || 'Graduate';
+                        document.getElementById('stream').value = data.stream || '';
+                        document.getElementById('year').value = data.year || '';
+                        document.getElementById('location').value = data.location || 'Anywhere in India';
+                        
+                        const userSkills = data.skills || [];
+                        document.querySelectorAll('#skills-container .skill-tag').forEach(tag => {
+                            if (userSkills.includes(tag.dataset.value)) tag.classList.add('selected');
+                        });
+
+                        const userInterests = data.interests || [];
+                        document.querySelectorAll('#interests-container .interest-tag').forEach(tag => {
+                            if (userInterests.includes(tag.dataset.value)) tag.classList.add('selected');
+                        });
+
+                        if (data.photo) {
+                            userPhotoBase64 = data.photo;
+                            document.getElementById('preview_img').src = userPhotoBase64;
+                        }
+                    }
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const stateSelect = document.getElementById('state');
+            populateDropdown(stateSelect, Object.keys(locationData));
+            populateDropdown(document.getElementById('college-list'), colleges);
+            populateSelectableTags('skills-container', skillsList, 'skill-tag');
+            populateSelectableTags('interests-container', interestsList, 'interest-tag');
+            loadUserData();
+            stateSelect.addEventListener('change', () => {
+                const citySelect = document.getElementById('city');
+                citySelect.innerHTML = '<option value="">Select City</option>';
+                const selectedState = stateSelect.value;
+                if (selectedState && locationData[selectedState]) {
+                    populateDropdown(citySelect, locationData[selectedState]);
+                }
+            });
+            document.getElementById('skills-container').addEventListener('click', (e) => { if (e.target.classList.contains('skill-tag')) { e.target.classList.toggle('selected'); } });
+            document.getElementById('interests-container').addEventListener('click', (e) => { if (e.target.classList.contains('interest-tag')) { e.target.classList.toggle('selected'); } });
+            document.getElementById('photo-upload').addEventListener('change', (event) => { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function(e) { userPhotoBase64 = e.target.result; document.getElementById('preview_img').src = userPhotoBase64; }; reader.readAsDataURL(file); });
+            document.getElementById('remove-photo-btn').addEventListener('click', () => { const placeholder = 'https://placehold.co/96x96/e2e8f0/718096?text=Photo'; document.getElementById('preview_img').src = placeholder; userPhotoBase64 = null; document.getElementById('photo-upload').value = ''; });
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => { if (isStepValid(currentStep)) { if (currentStep < totalSteps) { currentStep++; if (currentStep === totalSteps) { populateReview(); } showStep(currentStep); } } });
+        document.getElementById('prev-btn').addEventListener('click', () => { if (currentStep > 1) { currentStep--; showStep(currentStep); } });
+
+        form.addEventListener("submit", e => { e.preventDefault(); const skills = Array.from(document.querySelectorAll("#skills-container .skill-tag.selected")).map(e => e.dataset.value); const interests = Array.from(document.querySelectorAll("#interests-container .interest-tag.selected")).map(e => e.dataset.value); const formData = Object.fromEntries(new FormData(form).entries()); formData.skills = skills; formData.interests = interests; formData.photo = userPhotoBase64; fetch("/submit_application", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) }).then(res => res.json()).then(data => { if (data.redirect) { window.location.href = data.redirect; } else { alert("An error occurred: " + data.message); } }).catch(err => { console.error("Error:", err); alert("A network error occurred."); }); });
+        
+        function isStepValid(e) { let t = !0; return document.querySelectorAll(`#step-${e} [required]`).forEach(e => { e.value.trim() ? e.classList.remove("border-red-500") : (e.classList.add("border-red-500"), t = !1) }), t || alert("Please fill all required fields in this step."), t }
+        function showStep(e) { document.querySelectorAll(".step").forEach(e => e.classList.remove("active")), document.getElementById(`step-${e}`)?.classList.add("active"), updateButtons(), updateProgressBar() }
+        function updateButtons() { document.getElementById("prev-btn").style.display = currentStep > 1 ? "inline-block" : "none", document.getElementById("next-btn").style.display = currentStep < totalSteps ? "inline-block" : "none", document.getElementById("submit-btn").style.display = currentStep === totalSteps ? "inline-block" : "none" }
+        function updateProgressBar() { for (let e = 1; e <= totalSteps; e++) { const t = document.getElementById(`progress-step-${e}`), n = t.querySelector("div"), o = t.querySelectorAll("div")[1], d = document.getElementById(`progress-line-${e - 1}`); e < currentStep ? (n.classList.add("bg-green-600", "text-white", "border-green-600"), n.innerHTML = '<i class="fas fa-check"></i>', o.classList.add("text-green-600"), d && d.classList.replace("border-gray-300", "border-green-600")) : e === currentStep ? (n.classList.add("border-blue-700", "bg-blue-700", "text-white"), o.classList.add("text-blue-700"), n.innerHTML = e, d && d.classList.replace("border-green-600", "border-gray-300")) : (n.classList.remove("bg-green-600", "border-green-600", "bg-blue-700", "border-blue-700"), n.classList.add("border-gray-300"), o.classList.remove("text-blue-700", "text-green-600"), n.innerHTML = e, d && d.classList.replace("border-green-600", "border-gray-300")) } }
+
+        function populateReview() { 
+            document.getElementById("review-photo").src = userPhotoBase64 || "https://placehold.co/112x112/e2e8f0/718096?text=Photo", document.getElementById("review-name").innerText = document.getElementById("fullName").value, document.getElementById("review-email").innerText = document.getElementById("email").value, document.getElementById("review-phone").innerText = document.getElementById("phone").value; const e = document.getElementById("about").value, t = document.getElementById("review-about-section"); e.trim() ? (document.getElementById("review-about").innerText = e, t.style.display = "block") : (t.style.display = "none"), document.getElementById("review-state").innerText = document.getElementById("state").value, document.getElementById("review-city").innerText = document.getElementById("city").value, document.getElementById("review-college").innerText = document.getElementById("college").value, document.getElementById("review-qualification").innerText = document.getElementById("qualification").value, document.getElementById("review-stream").innerText = document.getElementById("stream").value, document.getElementById("review-location").innerText = document.getElementById("location").value; 
+            const interestsContainer = document.getElementById("review-interests"); interestsContainer.innerHTML = ""; document.querySelectorAll("#interests-container .interest-tag.selected").forEach(tag => { const pill = document.createElement("span"); pill.className = "bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-1 rounded-full"; pill.innerText = tag.innerText; interestsContainer.appendChild(pill); });
+            const skillsContainer = document.getElementById("review-skills"); skillsContainer.innerHTML = ""; document.querySelectorAll("#skills-container .skill-tag.selected").forEach(tag => { const pill = document.createElement("span"); pill.className = "bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-1 rounded-full"; pill.innerText = tag.innerText; skillsContainer.appendChild(pill); });
+        }
+    </script>
+</body>
+</html>

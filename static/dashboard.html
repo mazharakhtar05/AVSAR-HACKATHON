@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AVSAR Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f7f9fc;
+        }
+        .tricolor-bar { 
+            height: 5px; 
+            width: 100%; 
+            background: linear-gradient(to right, #FF9933 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #138808 66.6%); 
+        }
+        .welcome-section {
+            background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Ashoka_Chakra.svg/1200px-Ashoka_Chakra.svg.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.05;
+            transform: translate(-50%, -50%) rotate(15deg);
+        }
+        .stat-card, .scheme-card {
+            background-color: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover, .scheme-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.09);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <div class="tricolor-bar"></div>
+
+    <!-- Header -->
+    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="National Emblem of India" class="h-12">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">AVSAR</h1>
+                    <p class="text-sm text-gray-500">National Internship Portal</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Welcome Section -->
+        <section class="welcome-section text-white py-20">
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Welcome, Aspirant!</h1>
+                <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Your journey to build a better India starts here. Let's find the perfect internship for you.</p>
+                <a href="/application-form" class="mt-8 inline-block bg-blue-600 text-white font-bold rounded-lg px-8 py-3 hover:bg-blue-700 transition-colors duration-200 text-lg shadow-lg">
+                    Proceed to Application Form
+                </a>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section class="py-16 -mt-10 relative z-20">
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="stat-card p-6">
+                        <p class="text-4xl font-bold text-blue-600">50,000+</p>
+                        <h3 class="font-semibold text-gray-700 mt-2">Opportunities Posted</h3>
+                    </div>
+                    <div class="stat-card p-6">
+                        <p class="text-4xl font-bold text-green-600">1,200+</p>
+                        <h3 class="font-semibold text-gray-700 mt-2">Partner Organizations</h3>
+                    </div>
+                    <div class="stat-card p-6">
+                        <p class="text-4xl font-bold text-orange-500">10,000+</p>
+                        <h3 class="font-semibold text-gray-700 mt-2">Students Successfully Placed</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+            <!-- How it works -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 text-center">How It Works</h2>
+                <p class="text-center text-gray-600 mt-2">Your journey to a dream internship in just three simple steps.</p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="flex flex-col items-center p-4">
+                        <div class="bg-blue-100 text-blue-600 rounded-full h-20 w-20 flex items-center justify-center text-3xl mb-4"><i class="fas fa-user-edit"></i></div>
+                        <h3 class="font-bold text-lg">1. Create Your Profile</h3>
+                        <p class="text-sm text-gray-600 mt-1">Fill out the application form with your skills and preferences.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-4">
+                        <div class="bg-green-100 text-green-600 rounded-full h-20 w-20 flex items-center justify-center text-3xl mb-4"><i class="fas fa-cogs"></i></div>
+                        <h3 class="font-bold text-lg">2. Get Recommendations</h3>
+                        <p class="text-sm text-gray-600 mt-1">Our AI engine suggests the best-fit opportunities for you.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-4">
+                        <div class="bg-orange-100 text-orange-500 rounded-full h-20 w-20 flex items-center justify-center text-3xl mb-4"><i class="fas fa-paper-plane"></i></div>
+                        <h3 class="font-bold text-lg">3. Apply & Get Hired</h3>
+                        <p class="text-sm text-gray-600 mt-1">Apply to your dream internships and start your career.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Government Schemes Section -->
+            <section>
+                <h2 class="text-3xl font-bold text-gray-800 text-center">Explore Government Schemes for Youth</h2>
+                <p class="text-center text-gray-600 mt-2">Unlock your potential with these national initiatives.</p>
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <a href="#" class="scheme-card p-6 block">
+                        <div class="bg-orange-100 text-orange-500 rounded-lg h-12 w-12 flex items-center justify-center text-2xl mb-4"><i class="fas fa-lightbulb"></i></div>
+                        <h3 class="font-bold text-lg">Startup India</h3>
+                        <p class="text-sm text-gray-600 mt-1">Fostering a strong ecosystem for innovation and startups.</p>
+                    </a>
+                    <a href="#" class="scheme-card p-6 block">
+                        <div class="bg-blue-100 text-blue-500 rounded-lg h-12 w-12 flex items-center justify-center text-2xl mb-4"><i class="fas fa-tools"></i></div>
+                        <h3 class="font-bold text-lg">Skill India</h3>
+                        <p class="text-sm text-gray-600 mt-1">Empowering the youth with essential skill development.</p>
+                    </a>
+                    <a href="#" class="scheme-card p-6 block">
+                        <div class="bg-green-100 text-green-500 rounded-lg h-12 w-12 flex items-center justify-center text-2xl mb-4"><i class="fas fa-industry"></i></div>
+                        <h3 class="font-bold text-lg">Make in India</h3>
+                        <p class="text-sm text-gray-600 mt-1">Encouraging companies to manufacture their products in India.</p>
+                    </a>
+                    <a href="#" class="scheme-card p-6 block">
+                        <div class="bg-red-100 text-red-500 rounded-lg h-12 w-12 flex items-center justify-center text-2xl mb-4"><i class="fas fa-rupee-sign"></i></div>
+                        <h3 class="font-bold text-lg">Mudra Yojana</h3>
+                        <p class="text-sm text-gray-600 mt-1">Providing loans at low rates to micro-finance institutions.</p>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 text-sm text-gray-600 bg-white border-t mt-auto">
+        <p>&copy; 2024 Portal is Designed, Developed and Hosted by National Informatics Centre (NIC), Ministry of Electronics and Information Technology, Government of India.</p>
+    </footer>
+    
+</body>
+</html>
+
